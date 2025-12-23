@@ -1,0 +1,65 @@
+{
+  "product_id": 6,
+  "category": "Laptops",
+  "overall": {
+    "positive": 3,
+    "neutral": 0,
+    "negative": 1
+  },
+  "features": {
+    "performance": {
+      "count": 0,
+      "positive": 0,
+      "neutral": 0,
+      "negative": 0
+    },
+    "battery": {
+      "count": 1,
+      "positive": 1,
+      "neutral": 0,
+      "negative": 0
+    },
+    "display": {
+      "count": 2,
+      "positive": 1,
+      "neutral": 0,
+      "negative": 1
+    },
+    "keyboard": {
+      "count": 0,
+      "positive": 0,
+      "neutral": 0,
+      "negative": 0
+    },
+    "trackpad": {
+      "count": 0,
+      "positive": 0,
+      "neutral": 0,
+      "negative": 0
+    },
+    "graphics": {
+      "count": 0,
+      "positive": 0,
+      "neutral": 0,
+      "negative": 0
+    },
+    "build": {
+      "count": 0,
+      "positive": 0,
+      "neutral": 0,
+      "negative": 0
+    },
+    "heat": {
+      "count": 0,
+      "positive": 0,
+      "neutral": 0,
+      "negative": 0
+    },
+    "ports": {
+      "count": 0,
+      "positive": 0,
+      "neutral": 0,
+      "negative": 0
+    }
+  }
+}

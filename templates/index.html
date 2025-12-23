@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ShopSphere — Home</title>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+<!-- Top bar -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="logo">
+      <img src="{{ url_for('static', filename='images/logo.png') }}" class="logo-img">
+      <span class="brand">shop<span>sphere</span></span>
+    </div>
+
+    <div class="search-wrap">
+      <input type="search" placeholder="Search for Products, Brands and More">
+      <button>Search</button>
+    </div>
+
+    <div class="actions nav-right">
+      {% if session.get('user_id') %}
+        <span class="username">
+          Welcome, {{ session.get('user_name') }}
+        </span>
+        <a href="{{ url_for('logout') }}" class="btn logout-btn">Logout</a>
+      {% else %}
+        <a href="{{ url_for('login') }}" class="btn login-btn">Login</a>
+        <a href="{{ url_for('register') }}" class="btn register-btn">Register</a>
+      {% endif %}
+    </div>
+  </div>
+</header>
+
+<!-- Categories -->
+<nav class="categories-bar">
+  <div class="categories-inner">
+    <a class="cat" href="#"><img src="{{ url_for('static', filename='images/categories/mobiles.png') }}"><span>Mobiles</span></a>
+    <a class="cat" href="#"><img src="{{ url_for('static', filename='images/categories/laptops.png') }}"><span>Laptops</span></a>
+    <a class="cat" href="#"><img src="{{ url_for('static', filename='images/categories/fashion.png') }}"><span>Fashion</span></a>
+    <a class="cat" href="#"><img src="{{ url_for('static', filename='images/categories/electronics.png') }}"><span>Electronics</span></a>
+  </div>
+</nav>
+
+<!-- Hero Slider -->
+<section class="hero">
+  <div class="slider">
+    <div class="slide">
+      <img src="{{ url_for('static', filename='images/banners/banner1.jpg') }}">
+    </div>
+    <div class="slide">
+      <img src="{{ url_for('static', filename='images/banners/banner2.jpg') }}">
+    </div>
+    <div class="slide">
+      <img src="{{ url_for('static', filename='images/banners/banner3.jpg') }}">
+    </div>
+  </div>
+</section>
+
+<!-- Products -->
+<main class="main-content">
+
+  <section class="strip">
+    <h2>Top Deals</h2>
+    <div class="product-row">
+      <article class="card">
+        <img src="{{ url_for('static', filename='images/products/p1.jpg') }}">
+        <h3>Aurora Pixel Phone</h3>
+        <p class="price">₹24,999</p>
+      </article>
+
+      <article class="card">
+        <img src="{{ url_for('static', filename='images/products/p2.jpg') }}">
+        <h3>Skyline Pro X</h3>
+        <p class="price">₹32,999</p>
+      </article>
+
+      <article class="card">
+        <img src="{{ url_for('static', filename='images/products/p3.jpg') }}">
+        <h3>Pocket Mini Speaker</h3>
+        <p class="price">₹1,999</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="strip" style="background:#7aa7e2;">
+    <h2>Recommended for You</h2>
+    <div class="product-row">
+      <article class="card">
+        <img src="{{ url_for('static', filename='images/products/p5.jpg') }}">
+        <h3>Smart Watch S</h3>
+        <p class="price">₹4,999</p>
+      </article>
+
+      <article class="card">
+        <img src="{{ url_for('static', filename='images/products/p6.jpg') }}">
+        <h3>Noise Headphones</h3>
+        <p class="price">₹2,999</p>
+      </article>
+    </div>
+  </section>
+
+</main>
+
+<footer style="background:#212121;color:#fff;padding:30px;text-align:center;">
+  © 2025 ShopSphere
+</footer>
+
+<script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</body>
+</html>

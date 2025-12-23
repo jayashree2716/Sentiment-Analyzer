@@ -1,0 +1,65 @@
+{
+  "product_id": 2,
+  "category": "Mobiles",
+  "overall": {
+    "positive": 5,
+    "neutral": 1,
+    "negative": 2
+  },
+  "features": {
+    "battery": {
+      "count": 3,
+      "positive": 2,
+      "neutral": 0,
+      "negative": 1
+    },
+    "camera": {
+      "count": 1,
+      "positive": 0,
+      "neutral": 0,
+      "negative": 1
+    },
+    "display": {
+      "count": 1,
+      "positive": 1,
+      "neutral": 0,
+      "negative": 0
+    },
+    "sound": {
+      "count": 1,
+      "positive": 1,
+      "neutral": 0,
+      "negative": 0
+    },
+    "performance": {
+      "count": 0,
+      "positive": 0,
+      "neutral": 0,
+      "negative": 0
+    },
+    "charging": {
+      "count": 1,
+      "positive": 1,
+      "neutral": 0,
+      "negative": 0
+    },
+    "processor": {
+      "count": 0,
+      "positive": 0,
+      "neutral": 0,
+      "negative": 0
+    },
+    "network": {
+      "count": 0,
+      "positive": 0,
+      "neutral": 0,
+      "negative": 0
+    },
+    "design": {
+      "count": 0,
+      "positive": 0,
+      "neutral": 0,
+      "negative": 0
+    }
+  }
+}
