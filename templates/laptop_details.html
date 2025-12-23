@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{ product.title }} — Product Details</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+/* Copy your CSS from PHP file here */
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="topbar">
+    <div class="brand">shop<span style="color:#0057ff">Sphere</span></div>
+    <div class="top-actions">
+      {% if session.get('user_id') %}
+        <span>Welcome, {{ session.user_name }}</span>
+        <a href="{{ url_for('logout') }}">Logout</a>
+      {% else %}
+        <a href="{{ url_for('login') }}">Login</a>
+        <a href="{{ url_for('register') }}">Sign up</a>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="product-wrap">
+    <!-- LEFT: thumbnails & main image -->
+    <div class="left-col">
+      <div class="thumbnail-col" id="thumbs">
+        {% for i, img in enumerate(images) %}
+          <img src="{{ url_for('static', filename='images/products/' + img) }}" 
+               class="thumb {% if i==0 %}active{% endif %}" 
+               data-index="{{ i }}">
+        {% endfor %}
+      </div>
+      <div class="main-image">
+        <img id="mainImg" src="{{ url_for('static', filename='images/products/' + images[0]) }}" alt="Product image">
+      </div>
+    </div>
+
+    <!-- RIGHT: details -->
+    <div class="right-col">
+      <div class="title">{{ product.title }}</div>
+      <div class="brand-name">Brand: {{ product.brand or '—' }}</div>
+
+      <div class="price-row">
+        <div class="price">₹{{ "%.2f"|format(price_after) }}</div>
+        {% if discount_percent > 0 %}
+          <div class="orig-price">₹{{ "%.2f"|format(price) }}</div>
+          <div class="discount-badge">{{ discount_percent }}% OFF</div>
+        {% endif %}
+      </div>
+
+      <div class="properties">
+        <div class="prop"><h4>Special Feature</h4><p>{{ product.battery or 'HD Audio' }}</p></div>
+        <div class="prop"><h4>Screen size</h4><p>{{ product.display or '16.5-inch 1.5K AMOLED display with a 165Hz refresh rate' }}</p></div>
+        <div class="prop"><h4>Processor</h4><p>{{ product.cpu or 'Ryzen 5' }}</p></div>
+        <div class="prop"><h4>RAM / Storage</h4><p>{{ (product.ram or '8GB') + ' / ' + (product.storage or '256GB') }}</p></div>
+        <div class="prop"><h4>Operating System</h4><p>{{ product.camera or 'Windows 11 Home' }}</p></div>
+      </div>
+
+      <div class="section">
+        <h3>About this laptop</h3>
+        {% if product.about %}
+          <p>{{ product.about }}</p>
+        {% else %}
+          <p>The {{ product.title }} is engineered for users who want the best combination of power, battery life and display quality...</p>
+        {% endif %}
+      </div>
+
+      <div class="section">
+        <h3>About the Company</h3>
+        {% if product.company_about %}
+          <p>{{ product.company_about }}</p>
+        {% else %}
+          <p>Founded with a focus on innovation, the company behind this laptop has built its reputation on combining thoughtful engineering with user-friendly design...</p>
+        {% endif %}
+      </div>
+
+      <!-- Feature images -->
+      <div class="section">
+        <h3>Product Features</h3>
+        <div class="features">
+          {% for fi in images[:4] %}
+            <img src="{{ url_for('static', filename='images/products/' + fi) }}" alt="feature">
+          {% endfor %}
+        </div>
+      </div>
+
+      <div>
+        <button style="...">Buy</button>
+        <button style="...">Add-Cart</button>
+      </div>
+
+      <!-- Reviews -->
+      <div id="reviews" class="section">
+        <h3>Reviews</h3>
+        {% if feedback %}<div class="feedback">{{ feedback }}</div>{% endif %}
+
+        {% if comments|length == 0 %}
+          <p class="muted">No reviews yet — be the first!</p>
+        {% else %}
+          {% for c in comments %}
+            <div class="review-box">
+              <div class="meta"><strong>{{ c.username }}</strong> • {{ c.created_at }} • Rating: {{ c.rating }}/5</div>
+              <div class="text">{{ c.comment }}</div>
+            </div>
+          {% endfor %}
+        {% endif %}
+
+        <div class="write-review">
+          {% if not session.get('user_id') %}
+            <p class="muted"><a href="{{ url_for('login') }}">login</a> to review.</p>
+          {% else %}
+            <form method="post" action="{{ url_for('product_details', product_id=product.id) }}#reviews">
+              <input type="hidden" name="action" value="add_review">
+              <label>Rating:
+                <select name="rating">
+                  {% for r in range(5,0,-1) %}
+                    <option value="{{ r }}">{{ r }}</option>
+                  {% endfor %}
+                </select>
+              </label>
+              <textarea name="comment" placeholder="Write your review here..." required></textarea>
+              <div><button type="submit" class="cta">Submit review</button></div>
+            </form>
+          {% endif %}
+        </div>
+      </div>
+
+      <a href="{{ url_for('sentiment_graph', product_id=product.id) }}">
+        <button>View Sentiment Analysis</button>
+      </a>
+
+    </div> <!-- end right-col -->
+  </div> <!-- end product-wrap -->
+</div> <!-- end container -->
+
+<script>
+// Thumbnail click -> main image
+document.addEventListener('DOMContentLoaded', function(){
+  const thumbs = document.querySelectorAll('.thumb');
+  const mainImg = document.getElementById('mainImg');
+  thumbs.forEach((t, i) => t.addEventListener('click', () => {
+    thumbs.forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+    mainImg.src = t.src;
+  }));
+});
+</script>
+</body>
+</html>

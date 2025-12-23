@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Product</title>
+</head>
+<body>
+
+<h2>Add New Product</h2>
+
+<form action="{{ url_for('save_product') }}" method="post" enctype="multipart/form-data">
+    
+    <label>Category:</label>
+    <select name="category" required>
+        <option>Mobiles</option>
+        <option>Laptops</option>
+        <option>TV</option>
+        <option>Headphones</option>
+        <option>Wearables</option>
+    </select><br><br>
+
+    <label>Title:</label>
+    <input type="text" name="title" required><br><br>
+
+    <label>Brand:</label>
+    <input type="text" name="brand" required><br><br>
+
+    <label>Price:</label>
+    <input type="number" name="price" required><br><br>
+
+    <label>Discount (%):</label>
+    <input type="number" name="discount"><br><br>
+
+    <label>Short Description:</label><br>
+    <textarea name="short_desc" required></textarea><br><br>
+
+    <label>Long Description:</label><br>
+    <textarea name="long_desc" required></textarea><br><br>
+
+    <label>Specifications (JSON or text):</label><br>
+    <textarea name="specifications" required></textarea><br><br>
+
+    <label>Upload Images (3–5 images):</label>
+    <input type="file" name="images" multiple required><br><br>
+
+    <button type="submit">Save Product</button>
+</form>
+
+</body>
+</html>
